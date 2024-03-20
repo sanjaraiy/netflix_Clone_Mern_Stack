@@ -29,3 +29,13 @@ module.exports = {
 @tailwind components;
 @tailwind utilities;
 ```
+
+## Install React-router-Dom :-
+```
+npm i react-router-dom
+```
+
+## Install React Icons :-
+```
+npm install react-icons
+```
