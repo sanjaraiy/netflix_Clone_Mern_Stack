@@ -39,3 +39,16 @@ npm i react-router-dom
 ```
 npm install react-icons
 ```
+
+## Install Backend Dependencies :-
+```
+npm i express mangoose nodemon dotenv b
+cryptjs cookie-parser jsonwebtoken axios cors
+```
+## Setup Nodemon in index.js file:-
+```
+"scripts": {
+    "dev":"nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+```
