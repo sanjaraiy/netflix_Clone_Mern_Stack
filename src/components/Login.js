@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './Header'
 import { useState } from 'react'
 import axios from "axios"
+import toast from 'react-hot-toast'
 
 function Login() {
     const [isLogin,setLogin] = useState(true);
@@ -21,10 +22,19 @@ function Login() {
         //login
         const user = {email,password};
         try {
-            const res = await axios.post(`${API_END_POINT}/login`, user);
+            const res = await axios.post(`${API_END_POINT}/login`, user,{
+                headers:{
+                    'Content-Type' : 'application/json',
+                },
+                withCredentials : true
+            });
             console.log(res);
+            if(res.data.success){
+                toast.success(res.data.message);
+            }
 
         } catch (error) {
+            toast.error(error.response.data.message);
             console.log(error);
         }
 
@@ -32,10 +42,20 @@ function Login() {
         //register
         const user = {fullName, email, password};
         try {
-            const res = await axios.post(`${API_END_POINT}/register`,{fullName,email,password});
+            const res = await axios.post(`${API_END_POINT}/register`,user,{
+                headers:{
+                    'Content-Type' : 'application/json',
+                },
+                withCredentials : true
+            });
             console.log(res);
+            if(res.data.success){
+                   toast.success(res.data.message); 
+            }
+
 
         } catch (error) {
+            toast.error(error.response.data.message);
             console.log(error);
         }
     }

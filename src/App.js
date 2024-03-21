@@ -1,8 +1,12 @@
 import Body from "./components/Body";
+import  {Toaster} from 'react-hot-toast';
 
 function App() {
   return (
-     <Body></Body>
+     <div>
+         <Body></Body>
+         <Toaster></Toaster>
+     </div>
   );
 }
 
