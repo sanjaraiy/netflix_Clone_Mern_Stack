@@ -3,6 +3,12 @@ import Header from './Header'
 import { useState } from 'react'
 import axios from "axios"
 import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
+import {API_END_POINT} from '../utils/constant.js'
+import { useDispatch} from 'react-redux'
+import { setUser } from '../redux/userSlice.js'
+
+
 
 function Login() {
     const [isLogin,setLogin] = useState(true);
@@ -10,7 +16,9 @@ function Login() {
     const [fullName,setFullName]=useState("");
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
+    const navigate = useNavigate();
 
+    const dispatch = useDispatch();
 
  function LoginHandler(){
        setLogin(prev=>!prev)
@@ -32,6 +40,8 @@ function Login() {
             if(res.data.success){
                 toast.success(res.data.message);
             }
+            dispatch(setUser(res.data.user));
+            navigate("/browser");
 
         } catch (error) {
             toast.error(error.response.data.message);
@@ -52,7 +62,7 @@ function Login() {
             if(res.data.success){
                    toast.success(res.data.message); 
             }
-
+           setLogin(true);
 
         } catch (error) {
             toast.error(error.response.data.message);
