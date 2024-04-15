@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React from 'react'
 import { IoIosArrowDropdown } from "react-icons/io";
-import {useDispatch, useSelector} from "react-redux"
 import { API_END_POINT } from '../utils/constant';
 import { setUser } from '../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import {useDispatch, useSelector} from "react-redux"
 
 function Header() {
 
@@ -14,7 +14,8 @@ function Header() {
    const navigate = useNavigate();
 
    const logoutHandler = async () => {
-         try {
+        
+    try {
 
            const res = await axios.get(`${API_END_POINT}/logout`);
            if(res.data.success){

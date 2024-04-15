@@ -5,27 +5,30 @@ import axios from "axios"
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import {API_END_POINT} from '../utils/constant.js'
-import { useDispatch} from 'react-redux'
-import { setUser } from '../redux/userSlice.js'
+import { useDispatch, useSelector} from 'react-redux'
+import { setLoading, setUser } from '../redux/userSlice.js'
 
 
 
 function Login() {
-    const [isLogin,setLogin] = useState(true);
     
+    const [isLogin,setLogin] = useState(true);
     const [fullName,setFullName]=useState("");
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
 
+    const isLoading = useSelector((state) => state.app.isLoading)
+
  function LoginHandler(){
-       setLogin(prev=>!prev)
+       setLogin((prev)=>!prev)
  }
 
-  async function getInputDataHandler(e){
+async function getInputDataHandler(e){
     e.preventDefault();
+     dispatch(setLoading(true));
+
      if(isLogin){
         //login
         const user = {email,password};
@@ -46,6 +49,8 @@ function Login() {
         } catch (error) {
             toast.error(error.response.data.message);
             console.log(error);
+        } finally{
+            dispatch(setLoading(false));
         }
 
      }else{
@@ -67,13 +72,17 @@ function Login() {
         } catch (error) {
             toast.error(error.response.data.message);
             console.log(error);
+        }finally {
+            dispatch(setLoading(false));
         }
     }
     
     console.log(fullName,email,password);
     setFullName("");
     setEmail("");
-    setLogin("");
+    setPassword("");
+    // setLogin("");
+
 
  }
  
@@ -92,7 +101,7 @@ function Login() {
                
                 <input onChange={(e)=>setEmail(e.target.value)} type="email"  value={email} placeholder='Email' className='outline-none p-3 my-2 rounded-sm bg-gray-800 text-white' />
                 <input onChange={(e)=>setPassword(e.target.value)} type="password" value={password} placeholder='Password' className='outline-none p-3 my-2 rounded-sm bg-gray-800 text-white'/>
-                 <button className='bg-red-600 mt-8 text-white text-xl py-1 rounded-sm'>{isLogin ? "Login" : "Signup"}</button>
+                 <button type='submit' className='bg-red-600 mt-8 text-white text-xl py-1 rounded-sm'>{ `${isLoading ? "loading..." : (isLogin ? "Login" : "Signup") }`}</button>
                 <p className='text-white mt-1'>{isLogin ? "New to Netflix" : "Already have an account?"} <span className='ml-1 text-blue-900 hover:cursor-pointer font-medium' onClick={LoginHandler}>{isLogin ? "Signup" : "Login"}</span></p>
             </div>
         </form>
