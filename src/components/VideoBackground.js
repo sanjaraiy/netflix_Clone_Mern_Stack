@@ -10,6 +10,7 @@ function VideoBackground() {
         title="YouTube video player" 
         frameborder="0" 
         allowfullscreen
+        controls
       ></iframe>
 
     </div>

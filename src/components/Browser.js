@@ -4,26 +4,28 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import MainContainer from './MainContainer';
 import MoiveContainer from './MoiveContainer';
-import axios from 'axios';
-import { now_Playing_Movie, options } from '../utils/constant';
-import { useDispatch } from 'react-redux';
-import { getNowPlayingMovies } from '../redux/movieSlice';
 import useNowPlayingMovies from '../hooks/useNowPlayingMovies';
+import usePopularMovies from '../hooks/usePopularMovies';
+import useTopRatedMovies from '../hooks/useTopRatedMovies';
+import useUpComingMovies from '../hooks/useUpcomingMovies';
 
 function Browser() {
 
   const user  = useSelector(store => store.app.user);
   const navigate = useNavigate();
   
-  //my custom hooks
+  //========== My custom hooks =============
    useNowPlayingMovies();
+   usePopularMovies();
+   useTopRatedMovies();
+   useUpComingMovies();
 
   useEffect(()=>{
     if(!user){
       navigate("/");
    }
    
-  },[])
+  },[]);
   
 
 
@@ -35,7 +37,7 @@ function Browser() {
 
     <div>
         <Header></Header>
-        <div>
+        <div className='relative'>
             <MainContainer></MainContainer>
             <MoiveContainer></MoiveContainer>
         </div>
