@@ -8,10 +8,11 @@ import useNowPlayingMovies from '../hooks/useNowPlayingMovies';
 import usePopularMovies from '../hooks/usePopularMovies';
 import useTopRatedMovies from '../hooks/useTopRatedMovies';
 import useUpComingMovies from '../hooks/useUpcomingMovies';
-
+import SearchMovie from './SearchMovie';
 function Browser() {
 
-  const user  = useSelector(store => store.app.user);
+  const user  = useSelector((state) => state.app.user);
+  const toggle  = useSelector((state)=> state.movie.toggle);
   const navigate = useNavigate();
   
   //========== My custom hooks =============
@@ -37,9 +38,16 @@ function Browser() {
 
     <div>
         <Header></Header>
-        <div className='relative'>
-            <MainContainer></MainContainer>
-            <MoiveContainer></MoiveContainer>
+        <div>
+         {
+          toggle ? <SearchMovie></SearchMovie> : (
+            <> 
+              <MainContainer></MainContainer>
+              <MoiveContainer></MoiveContainer>
+            </>
+          )
+         }
+           
         </div>
     </div>
   )
