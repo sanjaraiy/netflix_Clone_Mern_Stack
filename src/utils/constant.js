@@ -2,11 +2,7 @@ export const API_END_POINT = "http://localhost:8080/api/v1/user";
 
 //================= Confidential TMDB secrets ==========================
 export const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOWNjZTg2NjRmNDNjZmY3ZjBkMDNlM2NlNjRmNWFjMyIsInN1YiI6IjY0OGQ1MTczMmY4ZDA5MDEzYWY5ODhjNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZcRITp0dt_P6aF9jnG4q8cgZhfXpeoaoj-ml4__k-B0'
-  }
+ 
 };
 
 export const now_Playing_Movie = 'https://api.themoviedb.org/3/movie/now_playing';
