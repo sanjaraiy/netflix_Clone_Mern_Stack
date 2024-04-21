@@ -1,9 +1,9 @@
 import React from 'react'
 import { Banner_url } from '../utils/constant'
 import { useDispatch } from 'react-redux';
-import { setOpen } from '../redux/movieSlice';
+import { getId, setOpen } from '../redux/movieSlice';
 
-function MovieCard({posterPath}) {
+function MovieCard({posterPath, movieId}) {
    
   const dispatch = useDispatch();
 
@@ -11,6 +11,7 @@ function MovieCard({posterPath}) {
    if(posterPath === null) return null;
 
    const handleOpen = () => {
+     dispatch(getId(movieId));
       dispatch(setOpen(true));
    }
 

@@ -49,7 +49,9 @@ function SearchMovie() {
           })
          }
         </div>
-        <MovieList title = {movieName} searchMovie={true}  movies = {searchedMovie}></MovieList>
+        {
+          searchedMovie.length > 0 ? (<MovieList title = {movieName} searchMovie={true}  movies = {searchedMovie}></MovieList>) : (<h1>Movie Not Found!!</h1>)
+        }
     </>
   )
 }

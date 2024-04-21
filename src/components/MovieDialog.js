@@ -7,13 +7,14 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpen } from '../redux/movieSlice';
+import VideoBackground from './VideoBackground';
 
 
 
 
 export default function MovieDialog() {
    
-  const open  = useSelector((store)=>store.movie.open);
+  const { open, id} = useSelector((store)=>store.movie);
   const dispatch = useDispatch();
 
 
@@ -29,11 +30,10 @@ export default function MovieDialog() {
         
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+    
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+             <VideoBackground movieId={id} bool={true}></VideoBackground>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
