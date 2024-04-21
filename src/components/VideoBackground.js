@@ -3,10 +3,14 @@ import useMovieById from '../hooks/useMovieById'
 import { useSelector } from 'react-redux'
 
 function VideoBackground({movieId}) {
-   const trailer = useSelector((store)=>store.movie.trailerMovie)
-   console.log(trailer);
+  
+   console.log(movieId)
   //custom hook
-  useMovieById(movieId)
+  useMovieById(movieId);
+  
+  const trailer = useSelector((store)=>store.movie.trailerMovie)
+  console.log(trailer);
+
   return (
     <div className='w-screen'>
       <iframe 
@@ -15,7 +19,7 @@ function VideoBackground({movieId}) {
         // src={`https://www.youtube.com/embed/${trailer.key}?si=LaQ3hX3mD1hf4yeP&autoplay=1&mute=1`} 
         title="YouTube video player" 
         frameborder="0" 
-        allowfullscreen
+        allowFullScreen
         controls
       ></iframe>
 

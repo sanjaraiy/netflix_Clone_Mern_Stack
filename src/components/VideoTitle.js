@@ -1,9 +1,12 @@
 import React from 'react'
 import { CiCircleInfo } from "react-icons/ci";
 import { CiPlay1 } from "react-icons/ci";
+
+
 function VideoTitle({title, overview}) {
+  
   return (
-    <div className='w-screen aspect-video   absolute text-white pt-[18%] p-12'>
+    <div className='w-[vw]   absolute text-white pt-[18%] p-12'>
         <h1 className='text-3xl font-bold'>{title}</h1>
         <p className='w-1/3 mt-4 '>{overview}</p>
         <div className='mt-8 flex gap-2'>
